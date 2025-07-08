@@ -1,24 +1,3 @@
-<template>
-  <div class="search-container p-4">
-    <h2 class="text-xl font-bold mb-4">Search Weather</h2>
-    <div class="flex gap-2">
-      <input
-        v-model="searchCity"
-        @keyup.enter="searchWeather"
-        type="text"
-        placeholder="Enter city name..."
-        class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-      <button
-        @click="searchWeather"
-        :disabled="!searchCity.trim()"
-        class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300"
-      >
-        Search
-      </button>
-    </div>
-  </div>
-</template>
 
 <script setup>
 import { ref } from 'vue'
@@ -36,7 +15,31 @@ const searchWeather = async () => {
     emit('weather-data', weatherData)
     searchCity.value = ''
   } catch (error) {
-    alert('City not found. Please try again.')
+    console.error('City not found. Please try again.')
   }
 }
 </script>
+<template>
+  <div  class="flex items-center justify-center">
+  <div class="search-container p-4">
+    <h2 class="text-xl text-white font-bold mb-4">Search Weather</h2>
+    <div class="flex gap-2 w-120">
+      <input
+        v-model="searchCity"
+        @keyup.enter="searchWeather"
+        type="text"
+        placeholder="Enter city name..."
+        class="flex-1 px-4 py-2 border text-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-white"
+      />
+      <button
+        @click="searchWeather"
+        :disabled="!searchCity.trim()"
+        class="px-6 py-2 text-blue-500 bg-white rounded-lg cursor-pointer hover:text-white hover:bg-blue-200"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+  </div>
+
+</template>

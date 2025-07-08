@@ -11,9 +11,9 @@ const handleWeatherData = (data) => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-400 to-blue-600 py-8">
+  <div class="bg-[url(../assets/bg.jpg)] min-h-screen">
     <div class="container mx-auto px-4">
-      <h1 class="text-4xl font-bold text-white text-center mb-8">Weather App</h1>
+      <h1 class="text-4xl font-bold text-white text-center py-4 mb-8">Weather App</h1>
       <SearchBar @weather-data="handleWeatherData" />
       <WeatherCard :weather-data="weatherData" />
     </div>

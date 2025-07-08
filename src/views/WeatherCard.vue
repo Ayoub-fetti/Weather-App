@@ -1,3 +1,11 @@
+<script setup>
+const props = defineProps({
+  weatherData: {
+    type: Object,
+    default: null
+  }
+})
+</script>
 <template>
   <div class="weather-card p-6 max-w-md mx-auto">
     <div v-if="weatherData" class="bg-white rounded-lg shadow-lg p-6">
@@ -32,17 +40,8 @@
         </div>
       </div>
     </div>
-    <div v-else class="text-center text-gray-500">
+    <div v-else class="text-center text-white">
       <p>Search for a city to see weather information</p>
     </div>
   </div>
 </template>
-
-<script setup>
-const props = defineProps({
-  weatherData: {
-    type: Object,
-    default: null
-  }
-})
-</script>
