@@ -3,12 +3,17 @@ const props = defineProps({
   weatherData: {
     type: Object,
     default: null
+  },
+  errorMessage: {
+    type: String,
+    default: null
   }
 })
 </script>
 <template>
+
   <div class="weather-card p-6 max-w-md mx-auto">
-    <div v-if="weatherData" class="bg-white rounded-lg shadow-lg p-6">
+    <div v-if="weatherData" class="bg-white rounded-lg shadow-lg p-6 card">
       <h2 class="text-2xl font-bold mb-2">{{ weatherData.name }}, {{ weatherData.sys.country }}</h2>
       <div class="flex items-center justify-between mb-4">
         <div>
@@ -40,8 +45,14 @@ const props = defineProps({
         </div>
       </div>
     </div>
-    <div v-else class="text-center text-white">
+    <div v-else class="text-center text-white font-semibold text-2xl">
       <p>Search for a city to see weather information</p>
+    </div>
+    <div v-if="errorMessage" class="flex items-start gap-3 bg-red-100 border-l-4 border-red-500 text-red-800 px-4 py-3 rounded-lg mt-4 animate-pulse shadow-lg">
+      <div>
+        <p class="font-bold text-red-700">Oops!</p>
+        <p class="text-sm">{{ errorMessage }}</p>
+      </div>
     </div>
   </div>
 </template>
