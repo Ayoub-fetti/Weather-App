@@ -4,21 +4,32 @@ import { ref } from 'vue'
 import { weatherService } from '../services/weatherService.js'
 
 const searchCity = ref('')
+const isLoading = ref(false)
 
 const emit = defineEmits(['weather-data'])
 
 const searchWeather = async () => {
   if (!searchCity.value.trim()) return
-  
-  try {
-    const weatherData = await weatherService.getCurrentWeather(searchCity.value)
-    emit('weather-data', weatherData)
-    emit('error', null)
-    searchCity.value = ''
-  } catch (error) {
-    console.error('City not found. Please try again.')
-    emit('error', 'City not found. Please try again.')
-  }
+
+  isLoading.value = true
+  emit('loading', true)
+
+  setTimeout(async () =>{
+
+    
+    try {
+      const weatherData = await weatherService.getCurrentWeather(searchCity.value)
+      emit('weather-data', weatherData)
+      emit('error', null)
+      searchCity.value = ''
+    } catch (error) {
+      console.error('City not found. Please try again.')
+      emit('error', 'City not found. Please try again.')
+    } finally {
+      isLoading.value = false
+      emit('loading', false)
+    }
+  }, 800)
 }
 </script>
 <template>
