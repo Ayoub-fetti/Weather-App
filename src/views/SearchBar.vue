@@ -33,10 +33,10 @@ const searchWeather = async () => {
 }
 </script>
 <template>
-  <div  class="flex items-center justify-center">
-  <div class="search-container p-4">
-    <h2 class="text-xl text-white font-bold mb-4">Search Weather</h2>
-    <div class="flex gap-4 w-120">
+  <div  class="flex items-center justify-center px-4">
+  <div class="search-container p-4 w-full max-w-md">
+    <h2 class="text-xl text-white font-bold mb-4 text center">Search Weather</h2>
+    <div class="flex flex-col sm:flex-row gap-4 w-full">
       <input
         v-model="searchCity"
         @keyup.enter="searchWeather"
